@@ -12,7 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if(event.key) === "Enter") {
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
+    
 })
 
 /**
@@ -20,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the uses's answer has been processed
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
 
     //creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
@@ -43,7 +53,7 @@ function runGame(gameType) {
  * Checks the answer against the first element in
  * the returned calculatedCorrectAnswer array
  */
-function checkAnwer() {
+function checkAnswer() {
     
     let userAnswer = parseInt(document.getElementById("answer-box").value);
     let calculatedAnswer = calculateCorrectAnswer();
@@ -96,7 +106,7 @@ function incrementScore() {
 /**
  * Gets the current tally of incorrect answers from the DOM and increments it by 1
  */
-function incrementWrongAnswer(params) {
+function incrementWrongAnswer() {
     
     let oldScore = parseInt(document.getElementById("incorrect").innerText);
     document.getElementById("incorrect").innerText = ++oldScore;
